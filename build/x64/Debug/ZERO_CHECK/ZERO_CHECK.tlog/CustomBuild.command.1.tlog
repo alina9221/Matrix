@@ -1,0 +1,10 @@
+^D:\6_С++\BUILD\CMAKEFILES\0B586066C7037114A9D99049D3883D69\GENERATE.STAMP.RULE
+setlocal
+"D:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -SD:/6_С++ -BD:/6_С++/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/6_С++/build/Matrix.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
