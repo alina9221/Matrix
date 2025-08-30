@@ -1,5 +1,6 @@
 #include <src/matrix.h>
 #include <iostream>
+#include "matrix.h"
 
 using namespace math;
 
@@ -63,7 +64,7 @@ Matrix math::operator+(const Matrix &A, const Matrix &B)
         return Matrix(0, 0);
     }
 
-    Matrix M(A.cols_, A.rows_); //Сложение матриц
+    Matrix M(A.rows_, A.cols_); //Сложение матриц
 
     for (int i = 0; i < M.mvec_.size(); ++i)
     {
@@ -81,7 +82,7 @@ Matrix math::operator-(const Matrix &A, const Matrix &B)
         return Matrix(0, 0);
     }
 
-    Matrix M(A.cols_, A.rows_);  //Вычитание матриц
+    Matrix M(A.rows_, A.cols_);  //Вычитание матриц
 
     for (int i = 0; i < M.mvec_.size(); ++i)
     {
@@ -108,9 +109,46 @@ Matrix math::operator*(const Matrix &A, const Matrix &B)
 
         for (int k = 0; k < A.cols_; ++k)
         {
-            M.mvec_.at(pos) += A(row, k) * B(k, col);
+            M.mvec_.at(pos) = A(row, k) * B(k, col);
         }
     }
 
     return M;
 }
+
+
+Matrix& Matrix::operator+=(const Matrix& other) //Сложение матриц
+{
+    if (rows_ != other.rows_ || cols_ != other.cols_) {
+        throw std::invalid_argument("Matrix: Matrices can't be added!");
+    }
+    
+    for (size_t i = 0; i < mvec_.size(); ++i) {
+        mvec_[i] += other.mvec_[i];
+    }
+    
+    return *this;  
+}
+
+Matrix& Matrix::operator-=(const Matrix& other) //Сложение матриц
+{
+    if (rows_ != other.rows_ || cols_ != other.cols_) {
+        throw std::invalid_argument("Matrix: Matrices can't be subtracted!");
+    }
+    
+    for (size_t i = 0; i < mvec_.size(); ++i) {
+        mvec_[i] -= other.mvec_[i];
+    }
+    
+    return *this;  
+}
+
+Matrix& Matrix::operator*=(double scalar)
+{
+    for (size_t i = 0; i < mvec_.size(); ++i) 
+    {
+        mvec_[i]*= scalar;
+    }    
+    return *this;
+}
+
