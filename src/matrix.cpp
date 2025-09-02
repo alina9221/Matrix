@@ -152,3 +152,22 @@ Matrix& Matrix::operator*=(double scalar)
     return *this;
 }
 
+ 
+  std::istream& math::operator>>(std::istream &is, Matrix &matrix) {
+    for (int i = 0; i < matrix.rows_; ++i) {
+        for (int j = 0; j < matrix.cols_; ++j) {
+            is >> matrix.mvec_[matrix.cols_ * i + j]; // Правильный доступ
+        }
+    }
+    return is;
+}
+
+std::ostream& math::operator<<(std::ostream &os, const Matrix &matrix) {
+    for (int i = 0; i < matrix.rows_; ++i) {
+        for (int j = 0; j < matrix.cols_; ++j) {
+            os << matrix.mvec_[matrix.cols_ * i + j] << " "; // Правильный доступ
+        }
+        os << std::endl;
+    }
+    return os;
+}
