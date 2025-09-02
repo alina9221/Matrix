@@ -11,26 +11,9 @@ public:
     Matrix(int r, int c) : rows(r), cols(c) {
         data.resize(rows, std::vector<int>(cols, 0));
     }
- // Перегрузка оператора ввода >>
-    friend std::istream& operator>>(std::istream &is, Matrix &matrix) {
-        for (int i = 0; i < matrix.rows; ++i) {
-            for (int j = 0; j < matrix.cols; ++j) {
-                is >> matrix.data[i][j];
-            }
-        }
-        return is;
-    }
+ 
 
-    // Перегрузка оператора вывода <<
-    friend std::ostream& operator<<(std::ostream &os, const Matrix &matrix) {
-        for (int i = 0; i < matrix.rows; ++i) {
-            for (int j = 0; j < matrix.cols; ++j) {
-                os << matrix.data[i][j] << " ";
-            }
-            os << std::endl;
-        }
-        return os;
-    }
+
 };    
 
 int main()
