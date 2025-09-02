@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <vector>
 
 namespace math
@@ -33,6 +34,10 @@ namespace math
         Matrix& operator-=(const Matrix& A);  // Функция вычитания матриц
 
         Matrix& operator*=(double scalar);  // Функция умножения матриц
+
+        friend std::ostream& operator<<(std::ostream &os, const Matrix &matrix); // Перегрузка оператора вывода <<
+
+        friend std::istream& operator>>(std::istream &is, Matrix &matrix); // Перегрузка оператора ввода >>
 
     };
 }   
